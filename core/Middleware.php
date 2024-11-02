@@ -9,7 +9,7 @@ function isAuth()
 function Auth()
 {
     if (!isAuth()) {
-        header("Location: /auth/login");
+        header("Location: /error/403.php");
         exit;
     }
 }

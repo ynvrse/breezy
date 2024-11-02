@@ -65,6 +65,7 @@ function route($path, $dir)
     } else {
         http_response_code(404);
         require('error/404.php');
+
     }
 
 }

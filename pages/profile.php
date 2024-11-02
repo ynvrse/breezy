@@ -120,28 +120,35 @@ if (isset($_POST['delete-user'])) {
                     <!-- Input untuk Email -->
 
 
-                    <div class="col-md-10 ">
+                    <div class="col-md-5 ">
 
                         <label for="name">Nama</label>
                         <input required type="text" id="name" name="name" value="<?= htmlspecialchars(user('name')) ?>"
                             class="form-control">
 
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label for="email">Email</label>
-                                <input required type="email" id="email" name="email"
-                                    value="<?= htmlspecialchars(user('email')) ?>" class="form-control">
 
-                            </div>
-                            <div class="col-md-6">
-                                <label for="photo">Ubah Foto Profile</label>
-                                <input type="file" id="photo" name="photo" class="form-control">
+                        <label for="email">Email</label>
+                        <input required type="email" id="email" name="email"
+                            value="<?= htmlspecialchars(user('email')) ?>" class="form-control">
 
-                            </div>
-
-                        </div>
 
                     </div>
+
+                    <div class="col-md-5 ">
+                        <label for="photo">Ubah Foto Profile</label>
+                        <label class="file-input-container ">
+                            <i class="bi bi-cloud-arrow-up me-4 text-primary" style="font-size: 2rem"></i>
+                            <span class="d-block mt-2">Click to upload or drag and drop your file here</span>
+                            <input type="file" id="file-input" name="photo" onchange="updateFileName()">
+                        </label>
+                        <div class="file-info mt-2 text-center text-muted">
+                            Accepted formats: .jpg, .png, .pdf, etc.
+                        </div>
+                    </div>
+
+
+
+
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" name="update_profile" class="btn btn-outline-dark">Edit Profile</button>
@@ -231,3 +238,20 @@ if (isset($_POST['delete-user'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file-input');
+            const fileInfo = document.querySelector('.file-info'); // Use querySelector to select by class
+
+            const file = fileInput.files[0];
+            console.log(file);
+
+            if (file) {
+                // Update the text to show the file name
+                fileInfo.className = 'text-success mt-2 text-center fw-bold';
+                fileInfo.textContent = file.name;
+
+            }
+        }
+    </script>

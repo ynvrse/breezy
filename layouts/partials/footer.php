@@ -1,13 +1,10 @@
 <script src="/assets/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
+
 
 <script>
     lucide.createIcons();
-
-    function setDefaultImage() {
-
-        document.getElementById("profile-picture").src = "/assets/storage/default/default_profile.png";
-        document.getElementById("profile-picture-nav").src = "/assets/storage/default/default_profile.png";
-    }
 </script>
 
 </body>
