@@ -86,8 +86,13 @@ function getURI()
 
 function user($key = 'id')
 {
-    $users = $_SESSION["users"];
-    return $users[$key];
+    $user = $_SESSION["users"];
+    return $user[$key];
+}
+
+function Avatar()
+{
+
 }
 
 

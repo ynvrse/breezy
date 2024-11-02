@@ -74,15 +74,26 @@ if (isset($_POST['update_profile'])) {
 
 if (isset($_POST['delete-user'])) {
     $id = user('id');
+    $passwordConfirm = $_POST['password_confirm_delete'] ?? null;
+
+    $user = $DB->query("SELECT password FROM users WHERE id='{$id}' LIMIT 1")->fetch_assoc();
+
     try {
         // 6. Hapus akun dengan konfirmasi dan session_destroy
-        $deleteUser = $DB->prepare("DELETE FROM users WHERE id=?");
-        $deleteUser->bind_param("i", $id);
-        $deleteUser->execute();
+        if (password_verify($passwordConfirm, $user["password"])) {
 
-        Toast("Akun Berhasil Dihapus!", 'success');
-        session_destroy();
-        redirectTo('/home');
+            $deleteUser = $DB->prepare("DELETE FROM users WHERE id=?");
+            $deleteUser->bind_param("i", $id);
+            $deleteUser->execute();
+
+            Toast("Akun Berhasil Dihapus!", 'success');
+            session_destroy();
+            redirectTo('/home');
+        } else {
+            Toast("Password Salah", 'danger');
+            redirectTo(getURI());
+
+        }
     } catch (Exception $e) {
         Toast("GAGAL menghapus akun: " . $e->getMessage(), 'danger');
     }
@@ -102,8 +113,9 @@ if (isset($_POST['delete-user'])) {
                 <div class="row">
                     <!-- Input untuk Nama -->
                     <div class="col-md-2 mb-2">
-                        <img src="<?= user('photo') ?>" alt="photo=<?= user('name') ?>" width="150px"
-                            class="rounded-circle">
+                        <img id="profile-picture"
+                            src="<?= user('photo') ?? '/assets/storage/default/default_profile.png' ?>"
+                            alt="photo=<?= user('name') ?>" width="150px" class="rounded-circle">
                     </div>
                     <!-- Input untuk Email -->
 
@@ -173,9 +185,49 @@ if (isset($_POST['delete-user'])) {
         </div>
         <div class="card-body">
             <p class="text-danger">Menghapus akun akan menghapus semua data Anda secara permanen dari sistem.</p>
-            <form method="POST">
-                <button type="submit" name="delete-user" class="btn btn-outline-danger">Hapus akun</button>
-            </form>
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                data-bs-target="#modalDeleteUser">
+                Hapus akun
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalDeleteUser" data-bs-backdrop="static" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Yakin ingin hapus akun?</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <input placeholder="Masukan Password" type="password" name="password_confirm_delete"
+                                        class="form-control" required>
+                                </div>
+                                <div class="d-flex justify-content-end">
+
+                                    <button type="submit" name="delete-user" class="btn btn-danger ">
+                                        Hapus akun
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div> -->
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>

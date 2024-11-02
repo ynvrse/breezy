@@ -2,6 +2,9 @@
 
 
 global $massage;
+if (isAuth()) {
+    redirectTo("/dashboard");
+}
 ?>
 
 <div class="card w-25 mx-auto mt-5 border-2">

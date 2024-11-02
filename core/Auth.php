@@ -54,11 +54,12 @@ if (isset($_POST["register"]) && !empty($_POST['name']) && !empty($_POST['email'
 
         if ($stmt->affected_rows > 0) {
             // Set session jika pendaftaran berhasil
-            $_SESSION["user_id"] = $stmt->insert_id;
+
             $_SESSION["users"] = [
                 'id' => $stmt->insert_id,
                 'name' => $name,
-                'email' => $email
+                'email' => $email,
+                'photo' => null,
             ];
             $message = "Akun berhasil dibuat.";
             Toast($message, 'success');

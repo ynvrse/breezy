@@ -16,11 +16,17 @@
                     <?php include("nav-link.php"); ?>
                 </ul>
                 <nav class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+
+                    <a class="nav-link  text-dark" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <?= user('name') ?>
+
+                        <img src="<?= user('photo') ?? '/assets/storage/default/default_profile.png' ?>"
+                            alt="photo-<?= user('name') ?>" width="40px" class="rounded-circle">
+
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
                         <li>
                             <a class="dropdown-item" href="/profile">
                                 <i data-lucide="user" class="me-2"></i> Profile</a>

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <script src="/assets/lucide-icons.min.js"></script>
 
-
 </head>
 
 <body class="bg-box">
