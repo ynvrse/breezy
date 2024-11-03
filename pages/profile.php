@@ -135,7 +135,7 @@ if (isset($_POST['delete-user'])) {
                     </div>
 
                     <div class="col-md-5 ">
-                        <label for="photo">Ubah Foto Profile</label>
+                        <label for="file-input">Ubah Foto Profile</label>
                         <label class="file-input-container ">
                             <i class="bi bi-cloud-arrow-up me-4 text-primary" style="font-size: 2rem"></i>
                             <span class="d-block mt-2">Click to upload or drag and drop your file here</span>
