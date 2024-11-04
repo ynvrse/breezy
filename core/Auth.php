@@ -21,6 +21,8 @@ if (isset($_POST["login"]) && !empty($_POST['email']) && !empty($_POST['password
             // Set session setelah login berhasil
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["users"] = $user;
+            redirectTo('/dashboard');
+
         } else {
             Toast("Gagal Login: Password tidak valid.", 'danger');
         }
@@ -63,6 +65,7 @@ if (isset($_POST["register"]) && !empty($_POST['name']) && !empty($_POST['email'
             ];
             $message = "Akun berhasil dibuat.";
             Toast($message, 'success');
+            redirectTo('/dashboard');
         } else {
             $message = "Gagal membuat akun. Silakan coba lagi.";
             Toast($message, 'danger');

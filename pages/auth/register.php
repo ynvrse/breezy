@@ -1,12 +1,8 @@
 <?php
-
-
-global $massage;
 if (isAuth()) {
     redirectTo("/dashboard");
 }
 ?>
-
 <div class="card w-25 mx-auto mt-5 border-2">
     <div class="card-header">
         <h1>SignUp</h1>
@@ -15,7 +11,6 @@ if (isAuth()) {
     </div>
     <div class="card-body ">
         <form method="POST">
-            <p class="text-danger"><?= $massage ?></p>
             <div class="mb-2">
                 <label for="email">Nama<span class="text-danger">*</span></label>
                 <input type="text" id="name" name="name" class="form-control" autofocus>

@@ -83,16 +83,17 @@ function getURI()
 {
     return $_SERVER["REQUEST_URI"];
 }
+function getTitle()
+{
+    $title = explode('/', $_SERVER["REQUEST_URI"]);
+
+    return ucwords($title[1]);
+}
 
 function user($key = 'id')
 {
     $user = $_SESSION["users"];
     return $user[$key];
-}
-
-function Avatar()
-{
-
 }
 
 
