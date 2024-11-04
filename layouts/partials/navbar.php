@@ -21,7 +21,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <?= user('name') ?>
 
-                        <img src="<?= user('photo') ?? '/assets/storage/default/default_profile.png' ?>"
+                        <img src="../<?= user('photo') ?? '/assets/storage/default/default_profile.png' ?>"
                             alt="photo-<?= user('name') ?>" width="40px" class="rounded-circle">
 
                     </a>

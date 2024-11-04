@@ -15,12 +15,12 @@ $user = $DB->query("SELECT name, email FROM users WHERE id='$id' LIMIT 1")->fetc
 
             <div class="col-md-6">
 
-                <input value="<?= htmlspecialchars($user['name']) ?>" type="text" name="name" id="name"
+                <input readonly value="<?= htmlspecialchars($user['name']) ?>" type="text" name="name" id="name"
                     class="form-control">
             </div>
             <div class="col-md-6">
 
-                <input type="email" value="<?= htmlspecialchars($user['email']) ?>" name="email" id="email"
+                <input type="email" readonly value="<?= htmlspecialchars($user['email']) ?>" name="email" id="email"
                     class="form-control">
             </div>
         </div>
